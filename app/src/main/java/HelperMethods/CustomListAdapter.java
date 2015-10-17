@@ -1,5 +1,6 @@
 package HelperMethods;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,15 @@ import java.util.List;
 import Model.GameOBj;
 import firebase.mychat.com.gamelistassignment.R;
 
-/**
- * Created by rob2cool on 10/17/15.
- */
 public class CustomListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
+    private Context context;
     List<GameOBj> mDataSet;
 
-    public CustomListAdapter(LayoutInflater mInflater, List<GameOBj> mDataSet) {
-        this.mInflater = mInflater;
+    public CustomListAdapter(Context context, List<GameOBj> mDataSet) {
+        this.context = context;
+
+        this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mDataSet = mDataSet;
     }
 
