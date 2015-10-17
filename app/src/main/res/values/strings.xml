@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GameListAssignment</string>
+    <string name="gamebtn_title">Game Rating</string>
+    <string name="game_rating_button">Rate Games</string>
+</resources>
