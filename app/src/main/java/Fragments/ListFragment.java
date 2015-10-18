@@ -1,4 +1,4 @@
-package firebase.mychat.com.gamelistassignment;
+package Fragments;
 
 
 import android.os.Bundle;
@@ -18,13 +18,11 @@ import java.util.ListIterator;
 
 import HelperMethods.CustomListAdapter;
 import Model.GameOBj;
+import firebase.mychat.com.gamelistassignment.R;
 
-/**
- * Created by rob2cool on 10/20/15.
- */
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment  {
 
-    List<GameOBj> mGames= new ArrayList<GameOBj>();
+    List<GameOBj> mGames= new ArrayList<>();
 
 
     @Nullable
