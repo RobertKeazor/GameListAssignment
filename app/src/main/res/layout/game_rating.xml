@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/game"
+        android:src="@drawable/mario"
+        android:scaleType="centerCrop"
+        android:layout_marginLeft="8dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="48dip"
+        android:layout_height="48dip" />
+    <RatingBar
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
+        android:numStars="5"
+        android:stepSize="0.1"
+        android:isIndicator="true" />
+</LinearLayout>

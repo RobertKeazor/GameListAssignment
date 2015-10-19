@@ -27,11 +27,13 @@ import Fragments.Youtube_Sample_Video_Fragment;
 import Model.GameOBj;
 
 public class GameListActivity extends AppCompatActivity {
+    AddItem addItem = new AddItem();
     Youtube_Sample_Video_Fragment sample;
+    boolean alreadyAdded= false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
 
         setContentView(R.layout.activity_game_list);
@@ -73,21 +75,26 @@ public class GameListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.add_button:
 
-                AddItem addItem = new AddItem();
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.add(R.id.List_Fragment_Container, addItem, "listfrag");
-                if(sample.isVisible()) {
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+               if(!alreadyAdded)
+               {ft.add(R.id.List_Fragment_Container, addItem, "listfrag");}
+                if (sample.isVisible()) {
                     ft.hide(sample);
                     ft.show(addItem);
                     ft.commit();
                     return true;
-                }else {Toast.makeText(GameListActivity.this, "already on add screen", Toast.LENGTH_SHORT).show();
-                return false;}
+                } else {
+                    Toast.makeText(GameListActivity.this, "already on add screen", Toast.LENGTH_SHORT).show();
+
+                    return false;
+                }
             case R.id.home_btn:
                 Toast.makeText(GameListActivity.this, "Home Button Click", Toast.LENGTH_SHORT)
                         .show();
+
                 finish();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
                 return true;
             default:
 
@@ -95,9 +102,15 @@ public class GameListActivity extends AppCompatActivity {
         }
 
     }
+
     @Subscribe
-    public void EventHandling (GameOBj game)
-    {
-        Toast.makeText(GameListActivity.this, "EVENTBUS IN", Toast.LENGTH_SHORT).show();
+    public void EventHandling(GameOBj game) {
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.hide(addItem);
+        ft.show(sample);
+        ft.commit();
+        alreadyAdded=true;
+
     }
 }

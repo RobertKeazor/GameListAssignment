@@ -11,6 +11,7 @@ public class GameOBj implements Parcelable {
     private String mConsole;
     private String previewURL;
     private Bitmap dynamic_img;
+    private Boolean isInserted;
 
     public GameOBj (){
         mImageRes =-1;
@@ -18,10 +19,11 @@ public class GameOBj implements Parcelable {
         mConsole="";
     }
 
-    public GameOBj(int mImageRes, String mTitle, String mConsole) {
-        this.mImageRes = mImageRes;
+    public GameOBj( String mTitle,String mConsole, Bitmap dynamic_img) {
         this.mTitle = mTitle;
         this.mConsole = mConsole;
+
+        this.isInserted=true;
     }
 
     protected GameOBj(Parcel in) {
@@ -42,6 +44,15 @@ public class GameOBj implements Parcelable {
             return new GameOBj[size];
         }
     };
+
+
+
+    public GameOBj(int imageRES,String mTitle, String mConsole) {
+        this.mTitle = mTitle;
+        this.mConsole = mConsole;
+        this.mImageRes=imageRES;
+        isInserted=false;
+    }
 
     public int getmImageRes() {
         return mImageRes;
@@ -86,6 +97,7 @@ public class GameOBj implements Parcelable {
         dest.writeString(mTitle);
         dest.writeString(mConsole);
         dest.writeString(previewURL);
+
     }
 
     public Bitmap getDynamic_img() {
@@ -94,5 +106,13 @@ public class GameOBj implements Parcelable {
 
     public void setDynamic_img(Bitmap dynamic_img) {
         this.dynamic_img = dynamic_img;
+    }
+
+    public Boolean getIsInserted() {
+        return isInserted;
+    }
+
+    public void setIsInserted(Boolean isInserted) {
+        this.isInserted = isInserted;
     }
 }

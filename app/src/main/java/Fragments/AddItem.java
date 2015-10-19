@@ -46,6 +46,7 @@ public class AddItem extends Fragment {
     Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.add_item_fragment, container, false);
         ButterKnife.bind(this, v);
+        addedGameObject.setDynamic_img(null);
         return v;
 
     }
@@ -89,7 +90,9 @@ public void captureGaller(){
             addedGameObject.setmTitle(gameName.getText().toString());
             addedGameObject.setmConsole(gameName.getText().toString());
 
+            addedGameObject = new GameOBj(gameName.getText().toString(),consoleName.getText().toString(),image);
             BUS.getInstance().post(addedGameObject);
+
 
         }
     }

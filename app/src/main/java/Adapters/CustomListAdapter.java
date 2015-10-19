@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +17,16 @@ import firebase.mychat.com.gamelistassignment.R;
 public class CustomListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private Context context;
+    private boolean mDynamic_Insert;
+
     List<GameOBj> mDataSet;
 
     public CustomListAdapter(Context context, List<GameOBj> mDataSet) {
         this.context = context;
-
+        mDynamic_Insert=false;
         this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mDataSet = mDataSet;
     }
-
-
     @Override
     public int getCount() {
         return mDataSet.size();
@@ -59,12 +60,30 @@ public class CustomListAdapter extends BaseAdapter {
         }
 
         GameOBj data = mDataSet.get(position);
-        holder.avatar.setImageResource(data.getmImageRes());
         holder.name.setText(data.getmTitle());
         holder.latestMessage.setText(data.getmConsole());
+       if(!data.getIsInserted()) {
+           holder.avatar.setImageResource(data.getmImageRes());
+       }else if (mDataSet.get(position).getDynamic_img()!=null)
+       {
 
-        return view;
+            holder.avatar.setImageBitmap(data.getDynamic_img());
+       } else {
+           data.setmImageRes(R.drawable.missingimage);
+           holder.avatar.setImageResource(data.getmImageRes());}
+
+           return view;
     }
+
+    public boolean ismDynamic_Insert() {
+        return mDynamic_Insert;
+    }
+
+    public void setmDynamic_Insert(boolean mDynamic_Insert) {
+        this.mDynamic_Insert = mDynamic_Insert;
+    }
+
+
     private class ViewHolder {
         public ImageView avatar;
         public TextView name, latestMessage;
