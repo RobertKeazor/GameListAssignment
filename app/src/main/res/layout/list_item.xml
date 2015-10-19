@@ -38,6 +38,21 @@
             android:maxLines="1"
             android:text="You: Y u no override BaseAdapter?"
             android:textAppearance="@android:style/TextAppearance.Small" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="260dp"
+            >
+
+
+            <CheckBox
+                android:id="@+id/finished"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Finished?"
+                android:layout_marginBottom="6dp"/>
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -61,7 +61,7 @@ public class CustomListAdapter extends BaseAdapter {
         GameOBj data = mDataSet.get(position);
         holder.avatar.setImageResource(data.getmImageRes());
         holder.name.setText(data.getmTitle());
-        holder.latestMessage.setText(data.getmDescription());
+        holder.latestMessage.setText(data.getmConsole());
 
         return view;
     }

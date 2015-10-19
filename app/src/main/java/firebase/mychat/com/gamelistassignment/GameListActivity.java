@@ -1,5 +1,6 @@
 package firebase.mychat.com.gamelistassignment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -13,58 +14,68 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.zip.Inflater;
 
+import Fragments.AddItem;
 import Fragments.ListFragment;
 import Fragments.Youtube_Sample_Video_Fragment;
 
 public class GameListActivity extends AppCompatActivity {
-
+    Youtube_Sample_Video_Fragment sample;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
-
         setContentView(R.layout.activity_game_list);
 
         FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction=manager.beginTransaction();
-        ListFragment fragment =new ListFragment();
-        Youtube_Sample_Video_Fragment  sample = new Youtube_Sample_Video_Fragment();
-        transaction.add(R.id.List_Fragment_Container,sample,"listfrag");
+        FragmentTransaction transaction = manager.beginTransaction();
+        ListFragment fragment = new ListFragment();
+        sample = new Youtube_Sample_Video_Fragment();
+
+        transaction.add(R.id.List_Fragment_Container, sample, "listfrag");
         transaction.commit();
 
-      createActionBar();
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.mainmenu,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
 
-    private void createActionBar() {
+        switch (item.getItemId()) {
+            case R.id.add_button:
 
+                AddItem addItem = new AddItem();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.List_Fragment_Container, addItem, "listfrag");
+                if(sample.isVisible()) {
+                    ft.hide(sample);
+                    ft.show(addItem);
+                    ft.commit();
+                    return true;
+                }else {Toast.makeText(GameListActivity.this, "already on add screen", Toast.LENGTH_SHORT).show();
+                return false;}
+            case R.id.home_btn:
+                Toast.makeText(GameListActivity.this, "Home Button Click", Toast.LENGTH_SHORT)
+                        .show();
+                finish();
+                startActivity(new Intent(this,MainActivity.class));
+                return true;
+            default:
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
-            actionBar.setHomeButtonEnabled(true);
-           actionBar.setHomeAsUpIndicator(R.mipmap.ic_launcher);
-            actionBar.setIcon(R.mipmap.ic_add);
+                return super.onOptionsItemSelected(item);
         }
+
     }
-
-
 }

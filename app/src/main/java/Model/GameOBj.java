@@ -1,5 +1,6 @@
 package Model;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -7,19 +8,26 @@ import android.os.Parcelable;
 public class GameOBj implements Parcelable {
    private int mImageRes;
    private String mTitle;
-    private String mDescription;
+    private String mConsole;
     private String previewURL;
+    private Bitmap dynamic_img;
 
-    public GameOBj(int mImageRes, String mTitle, String mDescription) {
+    public GameOBj (){
+        mImageRes =-1;
+        mTitle="";
+        mConsole="";
+    }
+
+    public GameOBj(int mImageRes, String mTitle, String mConsole) {
         this.mImageRes = mImageRes;
         this.mTitle = mTitle;
-        this.mDescription = mDescription;
+        this.mConsole = mConsole;
     }
 
     protected GameOBj(Parcel in) {
         mImageRes = in.readInt();
         mTitle = in.readString();
-        mDescription = in.readString();
+        mConsole = in.readString();
         previewURL = in.readString();
     }
 
@@ -51,12 +59,12 @@ public class GameOBj implements Parcelable {
         this.mTitle = mTitle;
     }
 
-    public String getmDescription() {
-        return mDescription;
+    public String getmConsole() {
+        return mConsole;
     }
 
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
+    public void setmConsole(String mConsole) {
+        this.mConsole = mConsole;
     }
 
     public String getPreviewURL() {
@@ -76,7 +84,15 @@ public class GameOBj implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(mImageRes);
         dest.writeString(mTitle);
-        dest.writeString(mDescription);
+        dest.writeString(mConsole);
         dest.writeString(previewURL);
+    }
+
+    public Bitmap getDynamic_img() {
+        return dynamic_img;
+    }
+
+    public void setDynamic_img(Bitmap dynamic_img) {
+        this.dynamic_img = dynamic_img;
     }
 }
