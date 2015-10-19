@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import EventHandling.BUS;
 import Model.GameOBj;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -87,7 +88,8 @@ public void captureGaller(){
         else {
             addedGameObject.setmTitle(gameName.getText().toString());
             addedGameObject.setmConsole(gameName.getText().toString());
-            Toast.makeText(getActivity(), "Good", Toast.LENGTH_SHORT).show();
+
+            BUS.getInstance().post(addedGameObject);
 
         }
     }

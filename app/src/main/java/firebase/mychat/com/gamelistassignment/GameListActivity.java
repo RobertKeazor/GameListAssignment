@@ -16,17 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.squareup.otto.Subscribe;
+
 import java.util.zip.Inflater;
 
+import EventHandling.BUS;
 import Fragments.AddItem;
 import Fragments.ListFragment;
 import Fragments.Youtube_Sample_Video_Fragment;
+import Model.GameOBj;
 
 public class GameListActivity extends AppCompatActivity {
     Youtube_Sample_Video_Fragment sample;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
 
         setContentView(R.layout.activity_game_list);
@@ -40,6 +45,18 @@ public class GameListActivity extends AppCompatActivity {
         transaction.commit();
 
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BUS.getInstance().unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BUS.getInstance().register(this);
     }
 
     @Override
@@ -77,5 +94,10 @@ public class GameListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+    @Subscribe
+    public void EventHandling (GameOBj game)
+    {
+        Toast.makeText(GameListActivity.this, "EVENTBUS IN", Toast.LENGTH_SHORT).show();
     }
 }
