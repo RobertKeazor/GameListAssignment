@@ -1,4 +1,4 @@
-package HelperMethods;
+package Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

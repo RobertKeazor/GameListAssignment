@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <FrameLayout
         android:id="@+id/fragment_youtube_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_width="fill_parent"
+        android:layout_height="250dp"
         />
 
+    <FrameLayout
+       android:paddingTop="100dp"
+       android:layout_width="fill_parent"
+       android:layout_height="match_parent"
+       android:layout_below="@id/fragment_youtube_player"
+       android:id="@+id/List_Fragment_Container1">
+    </FrameLayout>
 
-</LinearLayout>
+
+</RelativeLayout>

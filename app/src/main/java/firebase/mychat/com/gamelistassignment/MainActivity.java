@@ -1,9 +1,11 @@
 package firebase.mychat.com.gamelistassignment;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import butterknife.Bind;
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        getSupportActionBar().hide();
+
     }
     public void startRatingActivity (View view) {}
     public void startListActivity (View view) {
