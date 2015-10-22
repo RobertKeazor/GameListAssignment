@@ -26,7 +26,7 @@ import Fragments.ListFragment;
 import Fragments.Youtube_Sample_Video_Fragment;
 import Model.GameOBj;
 
-public class GameListActivity extends AppCompatActivity {
+public class GameListActivity extends AppCompatActivity  {
     AddItem addItem = new AddItem();
     Youtube_Sample_Video_Fragment sample;
     boolean alreadyAdded= false;

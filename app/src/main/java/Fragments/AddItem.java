@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import EventHandling.BUS;
 import Model.GameOBj;
+import Model.MasterList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -39,6 +40,7 @@ public class AddItem extends Fragment {
     private static final int SELECT_PICTURE = 1;
     Bitmap image;
     GameOBj addedGameObject= new GameOBj();
+    String ImageUri;
 
     @Nullable
     @Override
@@ -72,6 +74,7 @@ public void captureGaller(){
                    image = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
                                data.getData());
                  addedGameObject.setDynamic_img(image);
+                   ImageUri= data.getData().toString();
                } catch (IOException e) {
                    e.printStackTrace();
                }
@@ -89,7 +92,6 @@ public void captureGaller(){
         else {
             addedGameObject.setmTitle(gameName.getText().toString());
             addedGameObject.setmConsole(gameName.getText().toString());
-
             addedGameObject = new GameOBj(gameName.getText().toString(),consoleName.getText().toString(),image);
             BUS.getInstance().post(addedGameObject);
 

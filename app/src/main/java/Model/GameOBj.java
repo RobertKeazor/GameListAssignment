@@ -12,6 +12,7 @@ public class GameOBj implements Parcelable {
     private String previewURL;
     private Bitmap dynamic_img;
     private Boolean isInserted;
+    private String  IMG_URL;
 
     public GameOBj (){
         mImageRes =-1;
@@ -114,5 +115,13 @@ public class GameOBj implements Parcelable {
 
     public void setIsInserted(Boolean isInserted) {
         this.isInserted = isInserted;
+    }
+
+    public String getIMG_URL() {
+        return IMG_URL;
+    }
+
+    public void setIMG_URL(String IMG_URL) {
+        this.IMG_URL = IMG_URL;
     }
 }

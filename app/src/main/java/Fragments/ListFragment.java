@@ -12,10 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Adapters.CustomListAdapter;
 import EventHandling.BUS;
 import Model.GameOBj;

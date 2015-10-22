@@ -13,4 +13,10 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:title="Home BUtton"/>
+    <item
+        android:id="@+id/save_btn"
+        android:icon="@mipmap/ic_disk"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:title="Save Disk"/>
 </menu>

@@ -11,23 +11,28 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import InterFaces.RealmDataBaseInteraction;
 import Model.GameOBj;
 import Model.MasterList;
+import Model.RealmDataModel;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements RealmDataBaseInteraction {
 
     @Bind(R.id.gameListBtn)
     Button gameListBtn;
     @Bind(R.id.gameratingBtn)
     Button gameratingBtn;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        realm.getInstance(this);
         getSupportActionBar().hide();
         if(MasterList.getInstance().getmGameMasterList()==null){
             List<GameOBj> newList=createDummyList();
@@ -60,4 +65,25 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    public void createDatabase() {
+        RealmDataModel dataBaseModel = realm.createObject(RealmDataModel.class);
+
+
+    }
+
+    @Override
+    public void saveInDatabase(List<GameOBj> GAMEOBJ) {
+        RealmDataModel dataBaseModel = realm.createObject(RealmDataModel.class);
+
+        for (int position = 0;position <GAMEOBJ.size();position++)
+        {
+         dataBaseModel.setmGameName(GAMEOBJ.get(position).getmTitle());
+            dataBaseModel.setmConsole(GAMEOBJ.get(position).getmConsole());
+        }
+
+    }
+
+
 }
