@@ -15,6 +15,8 @@ import InterFaces.RealmDataBaseInteraction;
 import Model.GameOBj;
 import Model.MasterList;
 import Model.RealmDataModel;
+import Presenters.MainActivityPresenter;
+import Presenters.MainActivityPresenterImplmentation;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
@@ -26,44 +28,30 @@ public class MainActivity extends AppCompatActivity implements RealmDataBaseInte
     @Bind(R.id.gameratingBtn)
     Button gameratingBtn;
     private Realm realm;
+    MainActivityPresenter activityPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activityPresenter = new MainActivityPresenterImplmentation();
         ButterKnife.bind(this);
         realm.getInstance(this);
         getSupportActionBar().hide();
         if(MasterList.getInstance().getmGameMasterList()==null){
-            List<GameOBj> newList=createDummyList();
-            MasterList.getInstance().setmGameMasterList(newList);
+            List<GameOBj> newList = new ArrayList<>();
+            activityPresenter.onCreateDummyList(newList);
+
         }
 
     }
-    public List<GameOBj> createDummyList() {
-        List<GameOBj> mGames=new ArrayList<>();
-        mGames.add(new GameOBj(R.drawable.mario, "Mario", "MarioGame"));
-        mGames.add(new GameOBj(R.drawable.sonic, "Sonic", "Sonic the HedgeHog"));
-        mGames.add(new GameOBj(R.drawable.naruto, "Naruto", "Help Naruto Defeat Sasuake"));
-        mGames.add(new GameOBj(R.drawable.zelda, "Zelda", "Help Link win,in this adventure game "));
-        mGames.add(new GameOBj(R.drawable.tyson, "Mike TYson PunchOUt", "Help Little Rocky beat Iron Mike"));
 
-        mGames.add(new GameOBj(R.drawable.karatekid, "The Karate Kid", "Help DanielSon beat up " +
-                "the bullies"));
-        mGames.add(new GameOBj(R.drawable.bleach, "Bleach", "Help Ichago beat Aizen"));
-        mGames.add(new GameOBj(R.drawable.arrow, "The Green Arrow", "Help Oliver protect his city" +
-                ""));
-        mGames.add(new GameOBj(R.drawable.spiderman, "Spiderman", "Help PeterParker win"));
-    return mGames;}
     public void startRatingActivity (View view) {
-        Intent intent = new Intent(this,GameRatingActivity.class);
-        startActivity(intent);
-        finish();
+        activityPresenter.onStartRatingActivity(this);
+
     }
     public void startListActivity (View view) {
-        Intent intent = new Intent(this,GameListActivity.class);
-        startActivity(intent);
-        finish();
+        activityPresenter.onStartListActivity(this);
     }
 
     @Override
