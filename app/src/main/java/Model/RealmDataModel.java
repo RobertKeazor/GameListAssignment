@@ -5,7 +5,7 @@ import io.realm.annotations.PrimaryKey;
 
 
 public class RealmDataModel extends RealmObject {
-    @PrimaryKey
+@PrimaryKey
     private String mGameName;
     private String mConsole;
     private String mImageUrl;

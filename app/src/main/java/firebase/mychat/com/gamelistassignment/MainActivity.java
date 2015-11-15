@@ -1,27 +1,22 @@
 package firebase.mychat.com.gamelistassignment;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import InterFaces.RealmDataBaseInteraction;
 import Model.GameOBj;
 import Model.MasterList;
-import Model.RealmDataModel;
 import Presenters.MainActivityPresenter;
 import Presenters.MainActivityPresenterImplmentation;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 
-public class MainActivity extends AppCompatActivity implements RealmDataBaseInteraction {
+public class MainActivity extends AppCompatActivity  {
 
     @Bind(R.id.gameListBtn)
     Button gameListBtn;
@@ -54,24 +49,7 @@ public class MainActivity extends AppCompatActivity implements RealmDataBaseInte
         activityPresenter.onStartListActivity(this);
     }
 
-    @Override
-    public void createDatabase() {
-        RealmDataModel dataBaseModel = realm.createObject(RealmDataModel.class);
 
-
-    }
-
-    @Override
-    public void saveInDatabase(List<GameOBj> GAMEOBJ) {
-        RealmDataModel dataBaseModel = realm.createObject(RealmDataModel.class);
-
-        for (int position = 0;position <GAMEOBJ.size();position++)
-        {
-         dataBaseModel.setmGameName(GAMEOBJ.get(position).getmTitle());
-            dataBaseModel.setmConsole(GAMEOBJ.get(position).getmConsole());
-        }
-
-    }
 
 
 }
